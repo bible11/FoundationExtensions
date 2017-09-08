@@ -7,10 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		183EFD3A1F60ECAB00F9545F /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 183EFD391F60ECAB00F9545F /* TestObject.m */; };
+		183EFD3D1F60F08400F9545F /* MyTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 183EFD3C1F60F08400F9545F /* MyTestObject.m */; };
+		183EFD411F60F61800F9545F /* BaseWebVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183EFD401F60F61800F9545F /* BaseWebVController.m */; };
+		183EFD441F60F94300F9545F /* TempVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183EFD431F60F94300F9545F /* TempVController.m */; };
+		187BA8E51F4696DA007B2A18 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 187BA8E41F4696DA007B2A18 /* UIColor+Extension.m */; };
 		18814B221F458CBC00167A5E /* NSBundle+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18814B211F458CBC00167A5E /* NSBundle+Extension.m */; };
 		18814B2E1F458F2000167A5E /* Blocks+Extentsion.m in Sources */ = {isa = PBXBuildFile; fileRef = 18814B2D1F458F2000167A5E /* Blocks+Extentsion.m */; };
 		18814B311F4590F000167A5E /* NSError+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18814B301F4590F000167A5E /* NSError+Extension.m */; };
 		18814B3A1F4596F300167A5E /* ExpandTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 18814B391F4596F300167A5E /* ExpandTextField.m */; };
+		18A49E171F6283C400454E6A /* 404.html in Resources */ = {isa = PBXBuildFile; fileRef = 18A49E0F1F6283C400454E6A /* 404.html */; };
+		18A49E181F6283C400454E6A /* 500.html in Resources */ = {isa = PBXBuildFile; fileRef = 18A49E101F6283C400454E6A /* 500.html */; };
+		18A49E191F6283C400454E6A /* err_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A49E111F6283C400454E6A /* err_01.png */; };
+		18A49E1A1F6283C400454E6A /* err_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A49E121F6283C400454E6A /* err_02.png */; };
+		18A49E1B1F6283C400454E6A /* err_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A49E131F6283C400454E6A /* err_03.png */; };
+		18A49E1C1F6283C400454E6A /* jquery-1.11.3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 18A49E141F6283C400454E6A /* jquery-1.11.3.min.js */; };
+		18A49E1D1F6283C400454E6A /* req_err.html in Resources */ = {isa = PBXBuildFile; fileRef = 18A49E151F6283C400454E6A /* req_err.html */; };
+		18A49E1E1F6283C400454E6A /* reset.css in Resources */ = {isa = PBXBuildFile; fileRef = 18A49E161F6283C400454E6A /* reset.css */; };
 		18DCFD1B1F4146A100D5E941 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DCFD1A1F4146A100D5E941 /* main.m */; };
 		18DCFD1E1F4146A100D5E941 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DCFD1D1F4146A100D5E941 /* AppDelegate.m */; };
 		18DCFD211F4146A100D5E941 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DCFD201F4146A100D5E941 /* ViewController.m */; };
@@ -21,9 +34,20 @@
 		18DCFD391F417A5800D5E941 /* NSString+URLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DCFD381F417A5800D5E941 /* NSString+URLExtension.m */; };
 		18DCFD3C1F418D4100D5E941 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DCFD3B1F418D4100D5E941 /* NSObject+Extension.m */; };
 		18DCFD3F1F4191E200D5E941 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DCFD3E1F4191E200D5E941 /* NSDate+Extension.m */; };
+		A787181D49271DE3FA17E1B3 /* libPods-ExpandFoundation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83545C4BC00DBDB37686A406 /* libPods-ExpandFoundation.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		183EFD381F60ECAB00F9545F /* TestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestObject.h; sourceTree = "<group>"; };
+		183EFD391F60ECAB00F9545F /* TestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestObject.m; sourceTree = "<group>"; };
+		183EFD3B1F60F08400F9545F /* MyTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTestObject.h; sourceTree = "<group>"; };
+		183EFD3C1F60F08400F9545F /* MyTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTestObject.m; sourceTree = "<group>"; };
+		183EFD3F1F60F61800F9545F /* BaseWebVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWebVController.h; sourceTree = "<group>"; };
+		183EFD401F60F61800F9545F /* BaseWebVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWebVController.m; sourceTree = "<group>"; };
+		183EFD421F60F94300F9545F /* TempVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempVController.h; sourceTree = "<group>"; };
+		183EFD431F60F94300F9545F /* TempVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempVController.m; sourceTree = "<group>"; };
+		187BA8E31F4696D9007B2A18 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
+		187BA8E41F4696DA007B2A18 /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
 		18814B201F458CBC00167A5E /* NSBundle+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Extension.h"; sourceTree = "<group>"; };
 		18814B211F458CBC00167A5E /* NSBundle+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Extension.m"; sourceTree = "<group>"; };
 		18814B2C1F458F2000167A5E /* Blocks+Extentsion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Blocks+Extentsion.h"; sourceTree = "<group>"; };
@@ -35,6 +59,14 @@
 		18814B381F4596F300167A5E /* ExpandTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandTextField.h; sourceTree = "<group>"; };
 		18814B391F4596F300167A5E /* ExpandTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandTextField.m; sourceTree = "<group>"; };
 		18A10C891F42C36B003B00C8 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		18A49E0F1F6283C400454E6A /* 404.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 404.html; sourceTree = "<group>"; };
+		18A49E101F6283C400454E6A /* 500.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 500.html; sourceTree = "<group>"; };
+		18A49E111F6283C400454E6A /* err_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = err_01.png; sourceTree = "<group>"; };
+		18A49E121F6283C400454E6A /* err_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = err_02.png; sourceTree = "<group>"; };
+		18A49E131F6283C400454E6A /* err_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = err_03.png; sourceTree = "<group>"; };
+		18A49E141F6283C400454E6A /* jquery-1.11.3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-1.11.3.min.js"; sourceTree = "<group>"; };
+		18A49E151F6283C400454E6A /* req_err.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = req_err.html; sourceTree = "<group>"; };
+		18A49E161F6283C400454E6A /* reset.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = reset.css; sourceTree = "<group>"; };
 		18DCFD161F4146A100D5E941 /* ExpandFoundation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpandFoundation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18DCFD1A1F4146A100D5E941 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18DCFD1C1F4146A100D5E941 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -53,6 +85,9 @@
 		18DCFD3B1F418D4100D5E941 /* NSObject+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
 		18DCFD3D1F4191E200D5E941 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		18DCFD3E1F4191E200D5E941 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		75D59AADB9E16D349CDBC5AB /* Pods-ExpandFoundation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpandFoundation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExpandFoundation/Pods-ExpandFoundation.debug.xcconfig"; sourceTree = "<group>"; };
+		83545C4BC00DBDB37686A406 /* libPods-ExpandFoundation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExpandFoundation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5505DB7ABBE99F53298A23E /* Pods-ExpandFoundation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpandFoundation.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpandFoundation/Pods-ExpandFoundation.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,12 +95,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A787181D49271DE3FA17E1B3 /* libPods-ExpandFoundation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		183EFD3E1F60F60100F9545F /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				183EFD3F1F60F61800F9545F /* BaseWebVController.h */,
+				183EFD401F60F61800F9545F /* BaseWebVController.m */,
+			);
+			path = BaseViewController;
+			sourceTree = "<group>";
+		};
 		18814B341F45963B00167A5E /* UIKitExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -79,18 +124,45 @@
 			isa = PBXGroup;
 			children = (
 				18A10C891F42C36B003B00C8 /* libicucore.tbd */,
+				83545C4BC00DBDB37686A406 /* libPods-ExpandFoundation.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		18A49E0D1F6283C400454E6A /* LocalSource */ = {
+			isa = PBXGroup;
+			children = (
+				18A49E0E1F6283C400454E6A /* HTMLSOURCE */,
+			);
+			path = LocalSource;
+			sourceTree = "<group>";
+		};
+		18A49E0E1F6283C400454E6A /* HTMLSOURCE */ = {
+			isa = PBXGroup;
+			children = (
+				18A49E0F1F6283C400454E6A /* 404.html */,
+				18A49E101F6283C400454E6A /* 500.html */,
+				18A49E111F6283C400454E6A /* err_01.png */,
+				18A49E121F6283C400454E6A /* err_02.png */,
+				18A49E131F6283C400454E6A /* err_03.png */,
+				18A49E141F6283C400454E6A /* jquery-1.11.3.min.js */,
+				18A49E151F6283C400454E6A /* req_err.html */,
+				18A49E161F6283C400454E6A /* reset.css */,
+			);
+			path = HTMLSOURCE;
 			sourceTree = "<group>";
 		};
 		18DCFD0D1F4146A100D5E941 = {
 			isa = PBXGroup;
 			children = (
+				18A49E0D1F6283C400454E6A /* LocalSource */,
+				183EFD3E1F60F60100F9545F /* BaseViewController */,
 				18814B341F45963B00167A5E /* UIKitExtension */,
 				18DCFD301F41480C00D5E941 /* FoundationExtension */,
 				18DCFD181F4146A100D5E941 /* ExpandFoundation */,
 				18DCFD171F4146A100D5E941 /* Products */,
 				18A10C881F42C36B003B00C8 /* Frameworks */,
+				F8CDA1E1242B961150A9ADCD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,6 +186,12 @@
 				18DCFD271F4146A100D5E941 /* LaunchScreen.storyboard */,
 				18DCFD2A1F4146A100D5E941 /* Info.plist */,
 				18DCFD191F4146A100D5E941 /* Supporting Files */,
+				183EFD381F60ECAB00F9545F /* TestObject.h */,
+				183EFD391F60ECAB00F9545F /* TestObject.m */,
+				183EFD3B1F60F08400F9545F /* MyTestObject.h */,
+				183EFD3C1F60F08400F9545F /* MyTestObject.m */,
+				183EFD421F60F94300F9545F /* TempVController.h */,
+				183EFD431F60F94300F9545F /* TempVController.m */,
 			);
 			path = ExpandFoundation;
 			sourceTree = "<group>";
@@ -145,8 +223,19 @@
 				18814B301F4590F000167A5E /* NSError+Extension.m */,
 				18814B321F4591AB00167A5E /* NSObjCRuntime+Extensions.h */,
 				18814B331F4592E000167A5E /* FoundationExtension.h */,
+				187BA8E31F4696D9007B2A18 /* UIColor+Extension.h */,
+				187BA8E41F4696DA007B2A18 /* UIColor+Extension.m */,
 			);
 			path = FoundationExtension;
+			sourceTree = "<group>";
+		};
+		F8CDA1E1242B961150A9ADCD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				75D59AADB9E16D349CDBC5AB /* Pods-ExpandFoundation.debug.xcconfig */,
+				A5505DB7ABBE99F53298A23E /* Pods-ExpandFoundation.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,9 +245,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18DCFD2D1F4146A100D5E941 /* Build configuration list for PBXNativeTarget "ExpandFoundation" */;
 			buildPhases = (
+				DFFA9E0E0E217A1E53278E00 /* [CP] Check Pods Manifest.lock */,
 				18DCFD121F4146A100D5E941 /* Sources */,
 				18DCFD131F4146A100D5E941 /* Frameworks */,
 				18DCFD141F4146A100D5E941 /* Resources */,
+				F508DCC824092A88C3E4630C /* [CP] Embed Pods Frameworks */,
+				EDBF12C5EAD63A9FDC033E4E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -208,13 +300,69 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18A49E1E1F6283C400454E6A /* reset.css in Resources */,
+				18A49E1B1F6283C400454E6A /* err_03.png in Resources */,
+				18A49E1D1F6283C400454E6A /* req_err.html in Resources */,
+				18A49E1A1F6283C400454E6A /* err_02.png in Resources */,
+				18A49E191F6283C400454E6A /* err_01.png in Resources */,
 				18DCFD291F4146A100D5E941 /* LaunchScreen.storyboard in Resources */,
 				18DCFD261F4146A100D5E941 /* Assets.xcassets in Resources */,
 				18DCFD241F4146A100D5E941 /* Main.storyboard in Resources */,
+				18A49E181F6283C400454E6A /* 500.html in Resources */,
+				18A49E1C1F6283C400454E6A /* jquery-1.11.3.min.js in Resources */,
+				18A49E171F6283C400454E6A /* 404.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DFFA9E0E0E217A1E53278E00 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EDBF12C5EAD63A9FDC033E4E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExpandFoundation/Pods-ExpandFoundation-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F508DCC824092A88C3E4630C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExpandFoundation/Pods-ExpandFoundation-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		18DCFD121F4146A100D5E941 /* Sources */ = {
@@ -222,13 +370,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				18DCFD3F1F4191E200D5E941 /* NSDate+Extension.m in Sources */,
+				183EFD411F60F61800F9545F /* BaseWebVController.m in Sources */,
 				18DCFD391F417A5800D5E941 /* NSString+URLExtension.m in Sources */,
 				18814B311F4590F000167A5E /* NSError+Extension.m in Sources */,
+				183EFD3A1F60ECAB00F9545F /* TestObject.m in Sources */,
 				18DCFD361F415AC000D5E941 /* NSString+Extensions.m in Sources */,
 				18814B221F458CBC00167A5E /* NSBundle+Extension.m in Sources */,
+				183EFD3D1F60F08400F9545F /* MyTestObject.m in Sources */,
 				18DCFD211F4146A100D5E941 /* ViewController.m in Sources */,
 				18DCFD1E1F4146A100D5E941 /* AppDelegate.m in Sources */,
+				187BA8E51F4696DA007B2A18 /* UIColor+Extension.m in Sources */,
 				18DCFD1B1F4146A100D5E941 /* main.m in Sources */,
+				183EFD441F60F94300F9545F /* TempVController.m in Sources */,
 				18814B2E1F458F2000167A5E /* Blocks+Extentsion.m in Sources */,
 				18DCFD3C1F418D4100D5E941 /* NSObject+Extension.m in Sources */,
 				18814B3A1F4596F300167A5E /* ExpandTextField.m in Sources */,
@@ -349,7 +502,9 @@
 		};
 		18DCFD2E1F4146A100D5E941 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75D59AADB9E16D349CDBC5AB /* Pods-ExpandFoundation.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = YF8WVFSEXH;
 				INFOPLIST_FILE = ExpandFoundation/Info.plist;
@@ -357,12 +512,15 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.logan.ExpandFoundation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		18DCFD2F1F4146A100D5E941 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5505DB7ABBE99F53298A23E /* Pods-ExpandFoundation.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = YF8WVFSEXH;
 				INFOPLIST_FILE = ExpandFoundation/Info.plist;
@@ -370,6 +528,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.logan.ExpandFoundation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

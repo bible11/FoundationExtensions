@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>404</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<style type="text/css">
+	</style>
+</head>
+<body>
+	<!-- 主题内容 开始 -->
+	<div class="main">
+		<div class="err_main">
+			<img src="err_02.png">
+			<p>呀！您访问的页面失联了……</p>
+			<p>404 Error</p>
+			<a class="btn">返回首页</a>
+		</div>
+	</div>
+	<!-- 主题内容 结束 -->
+    
+    <script src="jquery-1.11.3.min.js"></script>
+    
+    <script type="text/javascript">
+        $(function(){
+          
+          $(".btn").click(function() {
+                          
+                          $(this).addClass("clicked");
+                          
+                          setTimeout(function(){
+                                     $(".btn").removeClass("clicked");
+                                     },50);
+                          })
+          
+          $(".btn").click(function(){
+                          
+                          window.webkit.messageHandlers.goHomeView.postMessage("回到主页");
+                          
+                          })
+          
+          })
+    </script>
+    
+</body>
+</html>
