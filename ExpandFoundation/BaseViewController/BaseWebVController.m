@@ -183,12 +183,12 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
 // 2.页面开始加载
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation
 {
-    NSLog(@"----");
+    NSLog(@"%s",__func__);
 }
 
 // 3.在收到服务器的响应头，根据response相关信息，决定是否跳转。decisionHandler必须调用
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler
-{
+{NSLog(@"%s",__func__);
     //网络请求返回的状态码
     NSHTTPURLResponse *response = (NSHTTPURLResponse *)navigationResponse.response;
     
@@ -215,19 +215,19 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
 // 4.开始获取到网页内容时返回
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation
 {
-    
+    NSLog(@"%s",__func__);
 }
 
 // 5.页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
-    
+    NSLog(@"%s",__func__);
 }
 
 // 加载失败之后调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
-    
+    NSLog(@"%s",__func__);
 }
 
 /* 需要响应身份验证时调用 同样在block中需要传入用户身份凭证

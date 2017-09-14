@@ -54,7 +54,9 @@
 
 - (void)presentAction
 {
-    [BaseWebVController webViewWithTitle:@"sad" url:@"http://www.cnblogs.com/Mr-Ygs/p/6061869.html" navigationController:self.navigationController];
+    BaseWebVController *webVC = [[BaseWebVController alloc]init];
+    webVC.urlString = @"http://www.cnblogs.com/Mr-Ygs/p/6061869.html";
+    [self presentViewController:webVC animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
