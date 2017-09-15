@@ -13,7 +13,7 @@
 #import <WebKit/WebKit.h>
 
 /** webView刷新监听字段 **/
-static NSString * const refreshWebView = @"refresh_webView";
+static NSString * const refreshWebView = @"refreshWebView";
 
 typedef NS_ENUM(NSInteger, ResponseStatusCode) {
     ResponseStatusCode_200 = 200,         //链接正常

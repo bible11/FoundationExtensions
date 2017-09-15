@@ -16,7 +16,7 @@
 #import <Reachability/Reachability.h>
 #import "NSString+URLExtension.h"
 
-static NSString * const estimatedProgress = @"estimated_progress";
+static NSString * const estimatedProgress = @"estimatedProgress";
 static NSString * const title = @"title";
 static NSString * const javaScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'); document.getElementsByTagName('head')[0].appendChild(meta);";
 
@@ -44,7 +44,7 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
 #pragma mark - Getter
 
 #pragma mark - Setter
-
+/** 服务器返回状态 **/
 - (void)setResponseStatus:(ResponseStatusCode)responseStatus
 {
     _responseStatus = responseStatus;
@@ -59,7 +59,7 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
             [self loadLocalHtmlWithUrl:path];
         }
             break;
-            case ResponseStatusCode_500:
+        case ResponseStatusCode_500:
         {
             path = [[NSBundle mainBundle] pathForResource:@"500" ofType:@"html"];
             [self loadLocalHtmlWithUrl:path];
@@ -72,6 +72,16 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
         }
             break;
     }
+}
+
+/** 设置请求urlString **/
+- (void)setUrlString:(NSString *)urlString
+{
+    if (_urlString == urlString) {
+        return;
+    }
+    
+    _urlString = urlString;
 }
 
 #pragma mark - OverWrite
@@ -115,33 +125,35 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
         self.webView.UIDelegate = self;
         self.webView.allowsBackForwardNavigationGestures = NO;
         self.webView.scrollView.showsVerticalScrollIndicator = NO;
-        self.webView.backgroundColor = [UIColor whiteColor];
-        [self.view addSubview:self.webView];
+        self.webView.backgroundColor = [UIColor grayColor];
         
-        //添加进度条监听
-        [self.webView addObserver:self forKeyPath:estimatedProgress options:NSKeyValueObservingOptionNew context:nil];
         //创建进度条UI
         self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 0)];
-        self.progressView.tintColor = [UIColor orangeColor];
+        self.progressView.progressTintColor = [UIColor orangeColor];
         self.progressView.trackTintColor = [UIColor whiteColor];
         [self.view addSubview:self.progressView];
         //将进度条显示在self.view的最上层
         [self.view insertSubview:self.webView belowSubview:self.progressView];
+        
         //监听html的title属性
         [self.webView addObserver:self forKeyPath:title options:NSKeyValueObservingOptionNew context:nil];
+        //添加进度条监听
+        [self.webView addObserver:self forKeyPath:estimatedProgress options:NSKeyValueObservingOptionNew context:nil];
     }
 }
 
 //加载本地网页
 - (void)loadLocalHtmlWithUrl:(NSString *)urlPath
 {
+    NSAssert(urlPath != nil, @"urlPath不能为nil");
     [self.webView loadHTMLString:urlPath baseURL:nil];
 }
 
 //加载URL
 - (void)loadRequestUrl:(NSString *)urlString
 {
-    NSURL *url = [NSURL URLWithString:urlString.urlEncodedString];
+    NSAssert(urlString != nil, @"urlString不能为nil");
+    NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
 }
@@ -151,6 +163,7 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor yellowColor];
     
     [self _configurationWebView];
     
@@ -167,18 +180,18 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
 {
     //刷新webView
     if ([message.name isEqualToString:refreshWebView]) {
-//        [self.webView reload];
+        //        [self.webView reload];
     }
 }
 
 #pragma mark - WKNavigationDelegate
 
 /* 1.在发送请求之前，决定是否跳转
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
-{
-    decisionHandler(WKNavigationActionPolicyAllow);
-}
-*/
+ - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
+ {
+ decisionHandler(WKNavigationActionPolicyAllow);
+ }
+ */
 
 // 2.页面开始加载
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation
@@ -188,7 +201,8 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
 
 // 3.在收到服务器的响应头，根据response相关信息，决定是否跳转。decisionHandler必须调用
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler
-{NSLog(@"%s",__func__);
+{
+    NSLog(@"%s",__func__);
     //网络请求返回的状态码
     NSHTTPURLResponse *response = (NSHTTPURLResponse *)navigationResponse.response;
     
@@ -231,16 +245,16 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
 }
 
 /* 需要响应身份验证时调用 同样在block中需要传入用户身份凭证
-- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler
-{
-    NSURLCredential *newCred = [NSURLCredential credentialWithUser:@""
-                                                          password:@""
-                                                       persistence:NSURLCredentialPersistenceNone];
-    // 为 challenge 的发送方提供 credential
-    [[challenge sender] useCredential:newCred forAuthenticationChallenge:challenge];
-    completionHandler(NSURLSessionAuthChallengeUseCredential,newCred);
-}
-*/
+ - (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler
+ {
+ NSURLCredential *newCred = [NSURLCredential credentialWithUser:@""
+ password:@""
+ persistence:NSURLCredentialPersistenceNone];
+ // 为 challenge 的发送方提供 credential
+ [[challenge sender] useCredential:newCred forAuthenticationChallenge:challenge];
+ completionHandler(NSURLSessionAuthChallengeUseCredential,newCred);
+ }
+ */
 
 #pragma mark - Observer
 // 进度条
@@ -252,13 +266,15 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
         if (newprogress == 1) {
             self.progressView.hidden = YES;
             [self.progressView setProgress:0 animated:NO];
+            [self.webView removeObserver:self forKeyPath:estimatedProgress];
         } else {
             self.progressView.hidden = NO;
-            [self.progressView setProgress:newprogress animated:YES];
+            //            [self.progressView setProgress:newprogress animated:YES];
         }
         
     } else if (object == self.webView && [keyPath isEqualToString:title]) {
         self.title = self.webView.title;
+        //        [self.webView removeObserver:self forKeyPath:title];
     }
 }
 
