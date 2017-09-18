@@ -24,7 +24,9 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
 
 @property(nonatomic,assign)ResponseStatusCode responseStatus;
 @property(nonatomic,strong)UIProgressView *progressView;
-@property(nonatomic,strong)NSString *localHtmlString;
+@property(nonatomic,strong)UIBarButtonItem *backItem;
+@property(nonatomic,strong)UIBarButtonItem *closeItem;
+@property(nonatomic,copy)WebViewConfigBlock webViewConfig;
 
 @end
 
@@ -32,16 +34,51 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
 
 #pragma mark - Initialization
 
-+ (instancetype)webViewWithTitle:(NSString *)title url:(NSString *)url navigationController:(UINavigationController *)controller
++ (instancetype)webViewWithTitle:(NSString *)title
+                             url:(NSString *)url
+                   pushImageName:(NSString *)pushImageName
+                  closeImageName:(NSString *)closeImageName
+            navigationController:(UINavigationController *)controller
+                   webViewConfig:(WebViewConfigBlock)configureation
 {
     BaseWebVController *webController = [[self alloc] init];
     webController.title = title;
     webController.urlString = url;
+    webController.pushImageName = pushImageName;
+    webController.closeImageName = closeImageName;
     [controller pushViewController:webController animated:YES];
+    
+    __weak typeof(webController) weakWebController = webController;
+    if (configureation) {
+        weakWebController.webViewConfig = configureation;
+    }
+    
     return webController;
 }
 
 #pragma mark - Getter
+
+- (UIBarButtonItem *)backItem
+{
+    if (_backItem == nil) {
+        NSAssert(self.pushImageName != nil, @"pushImageName不能为nil");
+        _backItem = [self createItemWithImage:[UIImage imageNamed:self.pushImageName]
+                                       action:@selector(customNavbackItemDidPressed)];
+        _backItem.imageInsets = UIEdgeInsetsMake(0, -8, 0, 0);
+    }
+    return _backItem;
+}
+
+- (UIBarButtonItem *)closeItem
+{
+    if (_closeItem == nil) {
+        NSAssert(self.closeImageName != nil, @"closeImageName不能为nil");
+        _closeItem = [self createItemWithImage:[UIImage imageNamed:self.closeImageName]
+                                        action:@selector(customNavCloseItemDidPressed)];
+        _closeItem.imageInsets = UIEdgeInsetsMake(0, -28, 0, 0);
+    }
+    return _closeItem;
+}
 
 #pragma mark - Setter
 /** 服务器返回状态 **/
@@ -80,7 +117,6 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
     if (_urlString == urlString) {
         return;
     }
-    
     _urlString = urlString;
 }
 
@@ -89,6 +125,8 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
 - (void)dealloc
 {
     NSLog(@"dealloced => %@",NSStringFromClass([self class]));
+    [self.webView removeObserver:self forKeyPath:estimatedProgress];
+    [self.webView removeObserver:self forKeyPath:title];
 }
 
 #pragma mark - Public Method
@@ -123,9 +161,15 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
         self.webView = [[WKWebView alloc]initWithFrame:self.view.bounds configuration:webViewConfiguration];
         self.webView.navigationDelegate = self;
         self.webView.UIDelegate = self;
-        self.webView.allowsBackForwardNavigationGestures = NO;
+        self.webView.allowsBackForwardNavigationGestures = YES;
         self.webView.scrollView.showsVerticalScrollIndicator = NO;
         self.webView.backgroundColor = [UIColor grayColor];
+        [self.view addSubview:self.webView];
+        
+        //configuration webView
+        if (self.webViewConfig) {
+            self.webViewConfig(self.webView);
+        }
         
         //创建进度条UI
         self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 0)];
@@ -146,7 +190,8 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
 - (void)loadLocalHtmlWithUrl:(NSString *)urlPath
 {
     NSAssert(urlPath != nil, @"urlPath不能为nil");
-    [self.webView loadHTMLString:urlPath baseURL:nil];
+    NSURLRequest *url = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:urlPath]];
+    [self.webView loadRequest:url];
 }
 
 //加载URL
@@ -158,18 +203,79 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
     [self.webView loadRequest:request];
 }
 
+//自定义UIBarButtonItem
+- (UIBarButtonItem *)createItemWithImage:(UIImage *)image action:(SEL)action
+{
+    return [[UIBarButtonItem alloc] initWithImage:image
+                                            style:UIBarButtonItemStylePlain
+                                           target:self
+                                           action:action];
+}
+
+//自定义导航栏 返回按钮
+- (void)resetupNavbackItemsForWebView:(WKWebView *)webView animated:(BOOL)animated
+{
+    BOOL showCloseItem = webView.canGoBack;
+    if (showCloseItem && self.navigationItem.leftBarButtonItems.count == 2) {
+        return;
+    }
+    
+    if (!showCloseItem && self.navigationItem.leftBarButtonItems.count == 1) {
+        return;
+    }
+    
+    if (!showCloseItem) {
+        [self.navigationItem setLeftBarButtonItems:@[self.backItem] animated:animated];
+        return;
+    }
+    
+    //closeItem
+    [self.navigationItem setLeftBarButtonItems:@[self.backItem, self.closeItem] animated:animated];
+}
+
+//back item action
+- (void)customNavbackItemDidPressed
+{
+    BOOL cangoBack = self.webView.canGoBack;
+    if (cangoBack) {
+        [self.webView goBack];
+    } else {
+        [self customNavCloseItemDidPressed];
+    }
+}
+
+//jump to viewController type [self.navigationController push] or [self presentViewController]
+- (void)customNavCloseItemDidPressed
+{
+    if (self.navigationController != nil && self.navigationController.viewControllers.firstObject != self) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        UIViewController *controller = (self.navigationController ?: self);
+        [controller.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
 #pragma mark - Life Cycle
 
 - (void)viewDidLoad
 {
+    NSLog(@"%s",__func__);
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor yellowColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     [self _configurationWebView];
     
     if (self.urlString) {
         [self loadRequestUrl:self.urlString];
     }
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    //移除JS调用OC的方法 --- 刷新界面 (防止循环引用导致内存不能释放)
+    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:refreshWebView];
 }
 
 #pragma mark - All Delegate
@@ -180,7 +286,7 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
 {
     //刷新webView
     if ([message.name isEqualToString:refreshWebView]) {
-        //        [self.webView reload];
+        [self loadRequestUrl:self.urlString];
     }
 }
 
@@ -236,12 +342,14 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
     NSLog(@"%s",__func__);
+    [self resetupNavbackItemsForWebView:webView animated:NO];
 }
 
 // 加载失败之后调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
     NSLog(@"%s",__func__);
+    self.responseStatus = ResponseStatusCode_unknow;
 }
 
 /* 需要响应身份验证时调用 同样在block中需要传入用户身份凭证
@@ -266,23 +374,27 @@ static NSString * const javaScript = @"var meta = document.createElement('meta')
         if (newprogress == 1) {
             self.progressView.hidden = YES;
             [self.progressView setProgress:0 animated:NO];
-            [self.webView removeObserver:self forKeyPath:estimatedProgress];
         } else {
             self.progressView.hidden = NO;
-            //            [self.progressView setProgress:newprogress animated:YES];
+            [self.progressView setProgress:newprogress animated:YES];
         }
         
     } else if (object == self.webView && [keyPath isEqualToString:title]) {
         self.title = self.webView.title;
-        //        [self.webView removeObserver:self forKeyPath:title];
     }
 }
 
 #pragma mark - UIDelegate
-//web界面中有弹出警告框时调用
-- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(void (^)())completionHandler
+// 警告框，页面中有调用JS的 alert 方法就会调用该方法
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler
 {
-    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示"
+                                                    message:message
+                                                   delegate:nil
+                                          cancelButtonTitle:nil
+                                          otherButtonTitles:@"确定", nil];
+    [alert show];
+    completionHandler();
 }
 
 

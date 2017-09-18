@@ -8,6 +8,7 @@
  *  描述: <WKWebView>
  *
  */
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
@@ -22,16 +23,27 @@ typedef NS_ENUM(NSInteger, ResponseStatusCode) {
     ResponseStatusCode_unknow = -1        //未知
 };
 
+typedef void (^WebViewConfigBlock)(WKWebView *webView);
+
 @interface BaseWebVController : UIViewController
 
 @property(nonatomic,strong)WKWebView *webView;
-/** 网页状态响应code **/
+/** html response status code **/
 @property(nonatomic,assign,readonly)ResponseStatusCode responseStatus;
-/** URL string **/
+/** URL string. need setup urlString's value **/
 @property(nonatomic,assign)NSString *urlString;
-/** 网络是否可用 **/
+/** push back item imageName. need setup pushImageNam's value **/
+@property(nonatomic,copy)NSString *pushImageName;
+/** present close item imageName need setup closeImageName's value **/
+@property(nonatomic,copy)NSString *closeImageName;
+/** network can connect internet **/
 - (BOOL)connectNetworking;
 
-+ (instancetype)webViewWithTitle:(NSString *)title url:(NSString *)url navigationController:(UINavigationController *)controller;
++ (instancetype)webViewWithTitle:(NSString *)title
+                             url:(NSString *)url
+                   pushImageName:(NSString *)pushImageName
+                  closeImageName:(NSString *)closeImageName
+            navigationController:(UINavigationController *)controller
+                   webViewConfig:(WebViewConfigBlock)configureation;
 
 @end
